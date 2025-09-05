@@ -48,8 +48,14 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBootComplete }) => {
         animate={{ scale: 1 }}
         className="mb-8"
       >
-        <div className="text-4xl mb-4 text-center">
-          🍄 SUPER MARIO PORTFOLIO OS 🍄
+        <div className="text-4xl mb-4 text-center flex items-center justify-center gap-4">
+          <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white font-bold text-2xl border-4 border-white shadow-lg">
+            R
+          </div>
+          RISHAV PORTFOLIO OS
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-2xl border-4 border-white shadow-lg">
+            J
+          </div>
         </div>
         <div className="text-xl text-center text-red-400">
           Version 1.0 - Rishav Jaiswal Edition

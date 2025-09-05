@@ -34,7 +34,7 @@ const TerminalApp: React.FC = () => {
     help: () => [
       'Available Commands:',
       '==================',
-      '📁 System Commands:',
+      'System Commands:',
       '  ls - List directory contents',
       '  cd - Change directory (simulated)',
       '  pwd - Print working directory', 
@@ -44,7 +44,7 @@ const TerminalApp: React.FC = () => {
       '  clear - Clear terminal',
       '  reset - Reset terminal',
       '',
-      '🎮 Mario Commands:',
+      'Game Commands:',
       '  coin - Collect a coin (+1 🪙)',
       '  powerup <type> - Use power-up (mushroom/fire/star)',
       '  warp <app> - Warp to application',
@@ -52,7 +52,7 @@ const TerminalApp: React.FC = () => {
       '  save - Save current state',
       '  restore - Restore saved state',
       '',
-      '💼 Portfolio Commands:',
+      'Portfolio Commands:',
       '  about - Open About window',
       '  skills - Display skills list',
       '  projects - Open Projects app',
@@ -61,7 +61,7 @@ const TerminalApp: React.FC = () => {
       '  education - Show education info',
       '  experience - Display work experience',
       '',
-      '🔧 System:',
+      'System:',
       '  helpme - Talk to Toad AI Assistant',
       '  guide - Interactive tutorial',
       ''
@@ -157,9 +157,9 @@ const TerminalApp: React.FC = () => {
       soundManager.play('flag');
       addAchievement('flag_bearer');
       return [
-        '🏁 Congratulations! You\'ve completed the adventure!',
-        '🎉 Thanks for exploring Rishav\'s Portfolio!',
-        '⭐ Achievement unlocked: Flag Bearer',
+        'Congratulations! You have completed the adventure!',
+        'Thanks for exploring Rishav Portfolio!',
+        'Achievement unlocked: Flag Bearer',
         ''
       ];
     },
@@ -181,7 +181,7 @@ const TerminalApp: React.FC = () => {
     },
 
     skills: () => [
-      '💪 Skills Overview:',
+      'Skills Overview:',
       '==================',
       `Programming: ${skills.programming.join(', ')}`,
       `Databases: ${skills.databases.join(', ')}`,
@@ -231,7 +231,7 @@ const TerminalApp: React.FC = () => {
     },
 
     education: () => [
-      '🎓 Education:',
+      'Education:',
       '=============',
       ...education.map(edu => 
         `${edu.degree} - ${edu.institution} (${edu.period}) - ${edu.status}`
@@ -240,7 +240,7 @@ const TerminalApp: React.FC = () => {
     ],
 
     experience: () => [
-      '💼 Work Experience:',
+      'Work Experience:',
       '==================',
       ...experience.map(exp => [
         `${exp.title} at ${exp.company} (${exp.period})`,
@@ -250,8 +250,8 @@ const TerminalApp: React.FC = () => {
     ],
 
     helpme: () => [
-      '🐸 Toad AI Assistant: "Hello! I\'m here to help!"',
-      '💡 Tips:',
+      'AI Assistant: "Hello! I am here to help!"',
+      'Tips:',
       '  - Use Tab for command completion',
       '  - Use ↑/↓ arrows for command history',
       '  - Try the Mario commands for fun interactions!',
@@ -261,7 +261,7 @@ const TerminalApp: React.FC = () => {
     ],
 
     guide: () => [
-      '🗺️ Interactive Tutorial:',
+      'Interactive Tutorial:',
       '=======================',
       '1. Try "coin" to collect your first coin',
       '2. Use "powerup mushroom" to become Super Mario',
@@ -306,12 +306,12 @@ const TerminalApp: React.FC = () => {
 
     save: () => {
       // Save state to localStorage (already handled by zustand persist)
-      return ['💾 Portfolio state saved!', ''];
+      return ['Portfolio state saved!', ''];
     },
 
     restore: () => {
       // Restore from localStorage (already handled by zustand persist)  
-      return ['📁 Portfolio state restored!', ''];
+      return ['Portfolio state restored!', ''];
     }
   };
 

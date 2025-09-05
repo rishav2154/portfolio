@@ -13,8 +13,8 @@ const AboutApp: React.FC = () => {
       >
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-4xl">
-            👨‍💻
+          <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white font-bold text-6xl border-4 border-white shadow-lg">
+            R
           </div>
           <h1 className="text-2xl font-bold text-mario-blue mb-2">{personalInfo.name}</h1>
           <p className="text-sm text-gray-600">BCA Student & Backend Developer</p>

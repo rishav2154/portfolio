@@ -18,7 +18,6 @@ export interface Window {
 export interface GameState {
   // System State
   isBooted: boolean;
-  isLoggedIn: boolean;
   currentWorkspace: 'overworld' | 'underground' | 'castle' | 'sky';
   theme: 'classic' | 'dark' | 'underwater' | 'lava';
   soundEnabled: boolean;
@@ -49,7 +48,6 @@ export interface GameState {
   
   // Actions
   boot: () => void;
-  login: () => void;
   setWorkspace: (workspace: GameState['currentWorkspace']) => void;
   setTheme: (theme: GameState['theme']) => void;
   toggleSound: () => void;
@@ -80,7 +78,6 @@ export const useGameStore = create<GameState>()(
     (set, get) => ({
       // Initial State
       isBooted: false,
-      isLoggedIn: false,
       currentWorkspace: 'overworld',
       theme: 'classic',
       soundEnabled: true,
@@ -107,7 +104,6 @@ export const useGameStore = create<GameState>()(
       
       // Actions
       boot: () => set({ isBooted: true }),
-      login: () => set({ isLoggedIn: true }),
       
       setWorkspace: (workspace) => set({ currentWorkspace: workspace }),
       setTheme: (theme) => set({ theme }),

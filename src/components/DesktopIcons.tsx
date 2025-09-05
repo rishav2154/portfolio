@@ -17,7 +17,6 @@ import {
   Calculator,
   Calendar,
   Cloud,
-  Settings,
   Trophy
 } from 'lucide-react';
 
@@ -39,8 +38,7 @@ const DesktopIcons: React.FC = () => {
     { id: 'calculator', title: 'Calculator', icon: Calculator, x: 350, y: 400 },
     { id: 'calendar', title: 'Calendar', icon: Calendar, x: 500, y: 100 },
     { id: 'weather', title: 'Weather', icon: Cloud, x: 500, y: 200 },
-    { id: 'settings', title: 'Settings', icon: Settings, x: 500, y: 300 },
-    { id: 'achievements', title: 'Achievements', icon: Trophy, x: 500, y: 400 }
+    { id: 'achievements', title: 'Achievements', icon: Trophy, x: 500, y: 300 }
   ];
 
   const handleIconClick = (icon: typeof icons[0]) => {

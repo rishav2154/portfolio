@@ -21,22 +21,48 @@ const Desktop: React.FC = () => {
         {currentWorkspace === 'overworld' && (
           <>
             {/* Clouds */}
-            <div className="absolute top-16 left-16 w-24 h-16 bg-white rounded-full opacity-80"></div>
-            <div className="absolute top-24 right-24 w-32 h-20 bg-white rounded-full opacity-80"></div>
-            <div className="absolute top-40 left-1/2 w-28 h-18 bg-white rounded-full opacity-80"></div>
+            <motion.div 
+              className="absolute top-16 left-16 w-24 h-16 bg-white rounded-full opacity-80"
+              animate={{ x: [-5, 5, -5] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute top-24 right-24 w-32 h-20 bg-white rounded-full opacity-80"
+              animate={{ x: [5, -5, 5] }}
+              transition={{ duration: 10, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute top-40 left-1/2 w-28 h-18 bg-white rounded-full opacity-80"
+              animate={{ x: [-3, 3, -3] }}
+              transition={{ duration: 12, repeat: Infinity }}
+            />
             
             {/* Hills */}
-            <div className="absolute bottom-16 left-8 w-48 h-32 bg-green-400 rounded-t-full"></div>
-            <div className="absolute bottom-16 right-16 w-64 h-40 bg-green-500 rounded-t-full"></div>
+            <div className="absolute bottom-16 left-8 w-48 h-32 bg-green-400 rounded-t-full shadow-lg"></div>
+            <div className="absolute bottom-16 right-16 w-64 h-40 bg-green-500 rounded-t-full shadow-lg"></div>
+            
+            {/* Sun */}
+            <motion.div 
+              className="absolute top-8 right-8 w-16 h-16 bg-yellow-400 rounded-full shadow-lg"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+            
+            {/* Grass patches */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-green-600 to-transparent"></div>
           </>
         )}
         
         {currentWorkspace === 'underground' && (
           <>
             {/* Stalactites */}
-            <div className="absolute top-0 left-20 w-4 h-16 bg-gray-600 rounded-b-full"></div>
-            <div className="absolute top-0 left-40 w-6 h-24 bg-gray-700 rounded-b-full"></div>
-            <div className="absolute top-0 right-32 w-5 h-20 bg-gray-600 rounded-b-full"></div>
+            <div className="absolute top-0 left-20 w-4 h-16 bg-gray-600 rounded-b-full shadow-lg"></div>
+            <div className="absolute top-0 left-40 w-6 h-24 bg-gray-700 rounded-b-full shadow-lg"></div>
+            <div className="absolute top-0 right-32 w-5 h-20 bg-gray-600 rounded-b-full shadow-lg"></div>
+            
+            {/* Cave walls */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-800 to-transparent"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-800 to-transparent"></div>
           </>
         )}
         
@@ -53,15 +79,37 @@ const Desktop: React.FC = () => {
               animate={{ y: [10, -10, 10] }}
               transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
             />
+            
+            {/* Castle towers */}
+            <div className="absolute bottom-0 left-1/4 w-16 h-32 bg-gray-700 shadow-lg"></div>
+            <div className="absolute bottom-0 right-1/4 w-20 h-40 bg-gray-800 shadow-lg"></div>
+            
+            {/* Lava glow */}
+            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-red-600 to-transparent opacity-50"></div>
           </>
         )}
         
         {currentWorkspace === 'sky' && (
           <>
             {/* Floating platforms */}
-            <div className="absolute top-32 left-24 w-32 h-4 bg-green-400 rounded"></div>
-            <div className="absolute top-48 right-32 w-40 h-4 bg-green-500 rounded"></div>
-            <div className="absolute bottom-32 left-1/2 w-36 h-4 bg-green-400 rounded"></div>
+            <motion.div 
+              className="absolute top-32 left-24 w-32 h-4 bg-green-400 rounded shadow-lg"
+              animate={{ y: [-2, 2, -2] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute top-48 right-32 w-40 h-4 bg-green-500 rounded shadow-lg"
+              animate={{ y: [2, -2, 2] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute bottom-32 left-1/2 w-36 h-4 bg-green-400 rounded shadow-lg"
+              animate={{ y: [-1, 1, -1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            />
+            
+            {/* Rainbow */}
+            <div className="absolute top-16 left-1/4 w-64 h-32 bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 rounded-full opacity-30 transform rotate-12"></div>
           </>
         )}
       </div>

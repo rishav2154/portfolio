@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useGameStore } from './store/useGameStore';
 import BootScreen from './components/BootScreen';
-import LoginScreen from './components/LoginScreen';
 import Desktop from './components/Desktop';
 
 function App() {
-  const { isBooted, isLoggedIn, boot, login } = useGameStore();
+  const { isBooted, boot } = useGameStore();
   const [showBoot, setShowBoot] = useState(true);
 
   useEffect(() => {
@@ -23,16 +22,8 @@ function App() {
     setShowBoot(false);
   };
 
-  const handleLogin = () => {
-    login();
-  };
-
   if (showBoot || !isBooted) {
     return <BootScreen onBootComplete={handleBootComplete} />;
-  }
-
-  if (!isLoggedIn) {
-    return <LoginScreen onLogin={handleLogin} />;
   }
 
   return <Desktop />;

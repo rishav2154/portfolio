@@ -104,39 +104,39 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
     >
       {/* Window Header */}
       <div 
-        className="mario-window-header cursor-move"
+        className="bg-gradient-to-r from-slate-700 to-slate-800 border-b border-slate-600 text-white px-4 py-3 font-semibold text-sm flex justify-between items-center cursor-move rounded-t-lg"
         onPointerDown={(e) => !window.maximized && dragControls.start(e)}
       >
-        <span className="font-bold">{window.title}</span>
+        <span className="font-semibold">{window.title}</span>
         <div className="flex items-center gap-1">
           <button
             onClick={() => minimizeWindow(window.id)}
-            className="w-6 h-6 bg-yellow-400 hover:bg-yellow-300 border border-black rounded flex items-center justify-center"
+            className="w-7 h-7 bg-yellow-500 hover:bg-yellow-400 rounded-md flex items-center justify-center transition-colors duration-200 shadow-sm"
           >
-            <Minimize2 className="w-3 h-3 text-black" />
+            <Minimize2 className="w-3 h-3 text-white" />
           </button>
           <button
             onClick={() => maximizeWindow(window.id)}
-            className="w-6 h-6 bg-green-400 hover:bg-green-300 border border-black rounded flex items-center justify-center"
+            className="w-7 h-7 bg-green-500 hover:bg-green-400 rounded-md flex items-center justify-center transition-colors duration-200 shadow-sm"
           >
-            {window.maximized ? <Square className="w-3 h-3 text-black" /> : <Maximize2 className="w-3 h-3 text-black" />}
+            {window.maximized ? <Square className="w-3 h-3 text-white" /> : <Maximize2 className="w-3 h-3 text-white" />}
           </button>
           <button
             onClick={() => closeWindow(window.id)}
-            className="w-6 h-6 bg-red-400 hover:bg-red-300 border border-black rounded flex items-center justify-center"
+            className="w-7 h-7 bg-red-500 hover:bg-red-400 rounded-md flex items-center justify-center transition-colors duration-200 shadow-sm"
           >
-            <X className="w-3 h-3 text-black" />
+            <X className="w-3 h-3 text-white" />
           </button>
         </div>
       </div>
 
       {/* Window Content */}
       <div 
-        className="flex-1 overflow-auto"
+        className="flex-1 overflow-auto bg-white rounded-b-lg"
         style={{ 
           height: window.maximized 
-            ? 'calc(100vh - 88px)' 
-            : `${window.height - 40}px` 
+            ? 'calc(100vh - 100px)' 
+            : `${window.height - 52}px` 
         }}
       >
         <AppComponent />
@@ -145,8 +145,7 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
       {/* Resize Handle */}
       {window.resizable && !window.maximized && (
         <div
-          className="absolute bottom-0 right-0 w-4 h-4 cursor-nw-resize"
-          style={{ background: 'linear-gradient(135deg, transparent 0%, #666 100%)' }}
+          className="absolute bottom-0 right-0 w-4 h-4 cursor-nw-resize bg-gradient-to-br from-transparent to-slate-400 rounded-tl-lg"
           onPointerDown={(e) => {
             e.preventDefault();
             const startX = e.clientX;

@@ -71,11 +71,11 @@ const DesktopIcons: React.FC = () => {
           whileTap={{ scale: 0.9 }}
           onClick={() => handleIconClick(icon)}
         >
-          <div className="flex flex-col items-center p-2 rounded hover:bg-white hover:bg-opacity-20 transition-colors">
-            <div className="mario-block w-12 h-12 flex items-center justify-center mb-2">
+          <div className="flex flex-col items-center p-3 rounded-xl hover:bg-white hover:bg-opacity-30 transition-all duration-200 backdrop-blur-sm">
+            <div className="w-14 h-14 bg-gradient-to-br from-white to-gray-100 rounded-xl shadow-lg border border-gray-200 flex items-center justify-center mb-2 hover:shadow-xl transition-all duration-200">
               <icon.icon className="w-6 h-6 text-black" />
             </div>
-            <span className="text-xs text-white text-center font-bold shadow-text max-w-16 break-words">
+            <span className="text-xs text-gray-800 text-center font-semibold max-w-16 break-words bg-white bg-opacity-80 px-2 py-1 rounded-md shadow-sm">
               {icon.title}
             </span>
           </div>

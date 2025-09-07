@@ -40,25 +40,25 @@ const Taskbar: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-blue-600 to-blue-800 border-t-2 border-black flex items-center justify-between px-4 z-50">
+    <div className="fixed bottom-0 left-0 right-0 h-14 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 backdrop-blur-lg bg-opacity-95 border-t border-slate-600 flex items-center justify-between px-6 z-50 shadow-2xl">
       {/* Start Menu Button */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="mario-block h-8 px-3 flex items-center gap-2"
+        className="h-10 px-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-lg flex items-center gap-2 text-white font-semibold shadow-lg transition-all duration-200"
         onClick={() => soundManager.play('coin')}
       >
         <Menu className="w-4 h-4" />
-        <span className="text-xs font-bold">Start</span>
+        <span className="text-sm">Start</span>
       </motion.button>
 
       {/* Open Windows */}
-      <div className="flex-1 flex items-center gap-2 mx-4 overflow-x-auto">
+      <div className="flex-1 flex items-center gap-3 mx-6 overflow-x-auto">
         {windows.filter(w => !w.minimized).map(window => (
           <motion.button
             key={window.id}
             whileHover={{ scale: 1.05 }}
-            className="h-8 px-3 bg-white bg-opacity-20 rounded text-white text-xs font-bold truncate min-w-24 max-w-32"
+            className="h-9 px-4 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 rounded-lg text-white text-sm font-medium truncate min-w-28 max-w-36 shadow-md transition-all duration-200"
             onClick={() => focusWindow(window.id)}
           >
             {window.title}
@@ -69,7 +69,7 @@ const Taskbar: React.FC = () => {
           <motion.button
             key={window.id}
             whileHover={{ scale: 1.05 }}
-            className="h-8 px-3 bg-gray-600 rounded text-gray-300 text-xs font-bold truncate min-w-24 max-w-32"
+            className="h-9 px-4 bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg text-gray-400 text-sm font-medium truncate min-w-28 max-w-36 shadow-md transition-all duration-200"
             onClick={() => minimizeWindow(window.id)}
           >
             <Minimize2 className="w-3 h-3 inline mr-1" />
@@ -79,16 +79,16 @@ const Taskbar: React.FC = () => {
       </div>
 
       {/* System Tray */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         {/* Coin Counter */}
-        <div className="flex items-center gap-1 text-yellow-400">
+        <div className="flex items-center gap-2 text-yellow-400 bg-slate-600 px-3 py-1 rounded-lg">
           <Coins className="w-4 h-4 coin-spin" />
-          <span className="text-xs font-bold">{coins}</span>
+          <span className="text-sm font-semibold">{coins}</span>
         </div>
 
         {/* Power Up Indicator */}
         {powerUp && (
-          <div className="text-xs font-bold powerup-glow">
+          <div className="text-lg powerup-glow bg-slate-600 px-2 py-1 rounded-lg">
             {powerUp === 'super' && '🍄'}
             {powerUp === 'fire' && '🔥'}
             {powerUp === 'star' && '⭐'}
@@ -100,11 +100,11 @@ const Taskbar: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleWorkspaceChange}
-          className="text-white text-xs font-bold flex items-center gap-1"
+          className="text-white text-sm font-medium flex items-center gap-2 bg-slate-600 hover:bg-slate-500 px-3 py-2 rounded-lg transition-all duration-200"
           title="Switch Workspace (Warp)"
         >
           <Monitor className="w-4 h-4" />
-          {workspaceNames[currentWorkspace]}
+          <span className="hidden md:inline">{workspaceNames[currentWorkspace]}</span>
         </motion.button>
 
         {/* Sound Toggle */}
@@ -115,14 +115,14 @@ const Taskbar: React.FC = () => {
             toggleSound();
             soundManager.setEnabled(!soundEnabled);
           }}
-          className="text-white"
+          className="text-white bg-slate-600 hover:bg-slate-500 p-2 rounded-lg transition-all duration-200"
           title="Toggle Sound"
         >
           {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
         </motion.button>
 
         {/* System Time */}
-        <div className="text-white text-xs font-bold">
+        <div className="text-white text-sm font-medium bg-slate-600 px-3 py-2 rounded-lg">
           {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </div>
       </div>

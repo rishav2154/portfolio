@@ -13,7 +13,7 @@ const Desktop: React.FC = () => {
 
   return (
     <div 
-      className="h-screen w-screen relative overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100"
+      className="h-screen w-screen relative overflow-hidden"
       style={{ background: workspace.background }}
     >
       {/* Desktop Background Elements */}
@@ -22,34 +22,34 @@ const Desktop: React.FC = () => {
           <>
             {/* Clouds */}
             <motion.div 
-              className="absolute top-16 left-16 w-24 h-16 bg-white rounded-full opacity-60 shadow-lg"
+              className="absolute top-16 left-16 w-24 h-16 bg-white rounded-full opacity-80"
               animate={{ x: [-5, 5, -5] }}
               transition={{ duration: 8, repeat: Infinity }}
             />
             <motion.div 
-              className="absolute top-24 right-24 w-32 h-20 bg-white rounded-full opacity-60 shadow-lg"
+              className="absolute top-24 right-24 w-32 h-20 bg-white rounded-full opacity-80"
               animate={{ x: [5, -5, 5] }}
               transition={{ duration: 10, repeat: Infinity }}
             />
             <motion.div 
-              className="absolute top-40 left-1/2 w-28 h-18 bg-white rounded-full opacity-60 shadow-lg"
+              className="absolute top-40 left-1/2 w-28 h-18 bg-white rounded-full opacity-80"
               animate={{ x: [-3, 3, -3] }}
               transition={{ duration: 12, repeat: Infinity }}
             />
             
             {/* Hills */}
-            <div className="absolute bottom-16 left-8 w-48 h-32 bg-gradient-to-t from-green-500 to-green-400 rounded-t-full shadow-xl"></div>
-            <div className="absolute bottom-16 right-16 w-64 h-40 bg-gradient-to-t from-green-600 to-green-500 rounded-t-full shadow-xl"></div>
+            <div className="absolute bottom-16 left-8 w-48 h-32 bg-green-400 rounded-t-full shadow-lg"></div>
+            <div className="absolute bottom-16 right-16 w-64 h-40 bg-green-500 rounded-t-full shadow-lg"></div>
             
             {/* Sun */}
             <motion.div 
-              className="absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-yellow-300 to-orange-400 rounded-full shadow-xl"
+              className="absolute top-8 right-8 w-16 h-16 bg-yellow-400 rounded-full shadow-lg"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             />
             
             {/* Grass patches */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-green-600 via-green-500 to-transparent opacity-80"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-green-600 to-transparent"></div>
           </>
         )}
         

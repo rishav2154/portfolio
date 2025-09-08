@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../store/useGameStore';
 import { soundManager } from '../utils/soundManager';
 import { 
@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 
 const DesktopIcons: React.FC = () => {
-  const { openWindow, addCoins, visitApp } = useGameStore();
+  const { openWindow, addCoins, visitApp, coins } = useGameStore();
 
   const icons = [
     { id: 'about', title: 'About Me', icon: User, x: 50, y: 100 },
@@ -62,23 +62,78 @@ const DesktopIcons: React.FC = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
+      {/* Coin Collection Effect */}
+      <AnimatePresence>
+        {coins > 0 && (
+          <motion.div
+            className="absolute top-4 left-4 z-50 pointer-events-none"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            exit={{ scale: 0, rotate: 180 }}
+          >
+            <div className="bg-yellow-400 text-black px-3 py-1 rounded-full font-bold text-sm shadow-lg">
+              🪙 {coins} Coins
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {icons.map((icon) => (
         <motion.div
           key={icon.id}
           className="absolute pointer-events-auto cursor-pointer"
           style={{ left: icon.x, top: icon.y }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0, rotate: -180 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ 
+            delay: Math.random() * 0.5,
+            type: "spring",
+            stiffness: 200,
+            damping: 15
+          }}
+          whileHover={{ 
+            scale: 1.15,
+            rotate: [0, -5, 5, 0],
+            transition: { duration: 0.3 }
+          }}
+          whileTap={{ 
+            scale: 0.85,
+            rotate: 15
+          }}
           onClick={() => handleIconClick(icon)}
         >
-          <div className="flex flex-col items-center p-2 rounded hover:bg-white hover:bg-opacity-20 transition-colors">
-            <div className="mario-block w-12 h-12 flex items-center justify-center mb-2">
+          <motion.div 
+            className="flex flex-col items-center p-3 rounded-xl hover:bg-white hover:bg-opacity-20 transition-all duration-300"
+            whileHover={{ 
+              boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+              y: -5
+            }}
+          >
+            <motion.div 
+              className="mario-block w-14 h-14 flex items-center justify-center mb-2 relative overflow-hidden"
+              whileHover={{ 
+                boxShadow: "0 0 20px rgba(255,255,0,0.5)",
+                borderColor: "#FFD700"
+              }}
+            >
+              {/* Shine Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
+                whileHover={{ 
+                  opacity: [0, 0.3, 0],
+                  x: [-100, 100]
+                }}
+                transition={{ duration: 0.6 }}
+              />
               <icon.icon className="w-6 h-6 text-black" />
-            </div>
-            <span className="text-xs text-white text-center font-bold shadow-text max-w-16 break-words">
+            </motion.div>
+            <motion.span 
+              className="text-xs text-white text-center font-bold shadow-text max-w-16 break-words"
+              whileHover={{ scale: 1.1 }}
+            >
               {icon.title}
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
         </motion.div>
       ))}
     </div>

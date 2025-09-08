@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useDragControls } from 'framer-motion';
+import { motion, useDragControls, AnimatePresence } from 'framer-motion';
 import { X, Minimize2, Maximize2, Square } from 'lucide-react';
 
 // Import all app components
@@ -63,9 +63,10 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
   const AppComponent = getAppComponent(window.component);
 
   return (
+    <AnimatePresence>
     <motion.div
       key={window.id}
-      className="mario-window absolute pointer-events-auto"
+      className="mario-window absolute pointer-events-auto backdrop-blur-sm"
       style={{
         zIndex: window.zIndex,
         width: window.maximized ? '100vw' : window.width,
@@ -74,16 +75,28 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
       initial={{ 
         x: window.x, 
         y: window.y,
-        scale: 0.8,
-        opacity: 0
+        scale: 0.7,
+        opacity: 0,
+        rotate: -5
       }}
       animate={{ 
         x: window.maximized ? 0 : window.x, 
         y: window.maximized ? 0 : window.y,
         scale: 1,
-        opacity: 1
+        opacity: 1,
+        rotate: 0
       }}
-      exit={{ scale: 0.8, opacity: 0 }}
+      exit={{ 
+        scale: 0.7, 
+        opacity: 0,
+        rotate: 5,
+        transition: { duration: 0.2 }
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 20
+      }}
       drag={!window.maximized}
       dragControls={dragControls}
       dragListener={false}
@@ -101,52 +114,88 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
         });
       }}
       onClick={() => focusWindow(window.id)}
+      whileHover={{
+        boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
+      }}
     >
       {/* Window Header */}
       <div 
-        className="mario-window-header cursor-move"
+        className="mario-window-header cursor-move relative overflow-hidden"
         onPointerDown={(e) => !window.maximized && dragControls.start(e)}
       >
+        {/* Header Shine Effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
+          animate={{ 
+            x: [-100, 300],
+            opacity: [0, 0.1, 0]
+          }}
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            repeatDelay: 5
+          }}
+        />
         <span className="font-bold">{window.title}</span>
         <div className="flex items-center gap-1">
-          <button
+          <motion.button
+            whileHover={{ 
+              scale: 1.1,
+              backgroundColor: "#FCD34D"
+            }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => minimizeWindow(window.id)}
-            className="w-6 h-6 bg-yellow-400 hover:bg-yellow-300 border border-black rounded flex items-center justify-center"
+            className="w-6 h-6 bg-yellow-400 border border-black rounded flex items-center justify-center transition-colors duration-200"
           >
             <Minimize2 className="w-3 h-3 text-black" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ 
+              scale: 1.1,
+              backgroundColor: "#4ADE80"
+            }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => maximizeWindow(window.id)}
-            className="w-6 h-6 bg-green-400 hover:bg-green-300 border border-black rounded flex items-center justify-center"
+            className="w-6 h-6 bg-green-400 border border-black rounded flex items-center justify-center transition-colors duration-200"
           >
             {window.maximized ? <Square className="w-3 h-3 text-black" /> : <Maximize2 className="w-3 h-3 text-black" />}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ 
+              scale: 1.1,
+              backgroundColor: "#F87171",
+              rotate: 90
+            }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => closeWindow(window.id)}
-            className="w-6 h-6 bg-red-400 hover:bg-red-300 border border-black rounded flex items-center justify-center"
+            className="w-6 h-6 bg-red-400 border border-black rounded flex items-center justify-center transition-colors duration-200"
           >
             <X className="w-3 h-3 text-black" />
-          </button>
+          </motion.button>
         </div>
       </div>
 
       {/* Window Content */}
-      <div 
+      <motion.div 
         className="flex-1 overflow-auto"
         style={{ 
           height: window.maximized 
             ? 'calc(100vh - 88px)' 
             : `${window.height - 40}px` 
         }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
       >
         <AppComponent />
-      </div>
+      </motion.div>
 
       {/* Resize Handle */}
       {window.resizable && !window.maximized && (
-        <div
-          className="absolute bottom-0 right-0 w-4 h-4 cursor-nw-resize"
+        <motion.div
+          className="absolute bottom-0 right-0 w-4 h-4 cursor-nw-resize opacity-50 hover:opacity-100"
           style={{ background: 'linear-gradient(135deg, transparent 0%, #666 100%)' }}
+          whileHover={{ scale: 1.2 }}
           onPointerDown={(e) => {
             e.preventDefault();
             const startX = e.clientX;
@@ -171,6 +220,7 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
         />
       )}
     </motion.div>
+    </AnimatePresence>
   );
 };
 

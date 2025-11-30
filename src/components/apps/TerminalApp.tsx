@@ -41,14 +41,19 @@ const TerminalApp: React.FC = () => {
       '  cat <file> - Display file contents',
       '  echo <text> - Display text',
       '  date - Show current date/time',
+      '  time - Show current time',
       '  clear - Clear terminal',
       '  reset - Reset terminal',
+      '  whoami - Show current user info',
       '',
       'Game Commands:',
       '  coin - Collect a coin (+1 🪙)',
       '  powerup <type> - Use power-up (mushroom/fire/star)',
       '  warp <app> - Warp to application',
       '  flag - Victory celebration',
+      '  mario - Greet Mario',
+      '  status - Show portfolio status',
+      '  joke - Get a programming joke',
       '  save - Save current state',
       '  restore - Restore saved state',
       '',
@@ -60,6 +65,7 @@ const TerminalApp: React.FC = () => {
       '  contact - Open contact form',
       '  education - Show education info',
       '  experience - Display work experience',
+      '  weather - Check weather',
       '',
       'System:',
       '  helpme - Talk to Toad AI Assistant',
@@ -100,7 +106,8 @@ const TerminalApp: React.FC = () => {
     coin: () => {
       addCoins(1);
       soundManager.play('coin');
-      return ['🪙 +1 Coin collected! Total coins: ' + (useGameStore.getState().coins + 1), ''];
+      const newTotal = useGameStore.getState().coins;
+      return [`🪙 +1 Coin collected! Total coins: ${newTotal}`, ''];
     },
 
     powerup: (type: string) => {
@@ -128,6 +135,60 @@ const TerminalApp: React.FC = () => {
       return [messages[powerUp], ''];
     },
 
+    mario: () => [
+      '🍄 It\'s-a me, Mario!',
+      'Welcome to my portfolio adventure!',
+      'Use commands to explore and collect coins!',
+      ''
+    ],
+
+    status: () => {
+      const state = useGameStore.getState();
+      return [
+        'Portfolio Status:',
+        '==================',
+        `Coins: ${state.coins} 🪙`,
+        `Power-up: ${state.powerUp || 'None'} ${state.powerUp ? '⭐' : ''}`,
+        `Workspace: ${state.currentWorkspace} 🌍`,
+        `Apps visited: ${state.visitedApps.length} 📱`,
+        `Achievements: ${state.achievements.length} 🏆`,
+        ''
+      ];
+    },
+
+    weather: () => [
+      '🌤️ Weather in Mushroom Kingdom:',
+      'Temperature: 24°C ☀️',
+      'Condition: Sunny and perfect for adventures!',
+      'Wind: Light breeze from the east',
+      'Perfect day to explore the portfolio!',
+      ''
+    ],
+
+    joke: () => {
+      const jokes = [
+        'Why did Mario become a developer? Because he loves jumping through code blocks! 🍄',
+        'What\'s Mario\'s favorite programming language? Java-Script! ☕',
+        'Why doesn\'t Mario use Windows? He prefers open source pipes! 🔧',
+        'How does Mario debug his code? He uses console.log(\'Mamma mia!\'); 🐛'
+      ];
+      const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      return [randomJoke, ''];
+    },
+
+    time: () => [
+      `Current time: ${new Date().toLocaleString()}`,
+      `Time in Mushroom Kingdom: Adventure Time! 🕐`,
+      ''
+    ],
+
+    whoami: () => [
+      'You are: Portfolio Explorer 🎮',
+      'Level: Beginner Adventurer',
+      'Special abilities: Coin collecting, App navigation',
+      'Current quest: Explore Rishav\'s portfolio',
+      ''
+    ],
     warp: (app: string) => {
       if (!app) return ['Usage: warp <app>', 'Available apps: about, skills, projects, resume, contact', ''];
       

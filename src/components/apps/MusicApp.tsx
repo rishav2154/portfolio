@@ -6,6 +6,7 @@ const MusicApp: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [volume, setVolume] = useState(75);
+  const [progress, setProgress] = useState(40);
 
   const playlist = [
     {
@@ -42,14 +43,29 @@ const MusicApp: React.FC = () => {
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
+    // Simulate progress when playing
+    if (!isPlaying) {
+      const interval = setInterval(() => {
+        setProgress(prev => {
+          if (prev >= 100) {
+            setIsPlaying(false);
+            clearInterval(interval);
+            return 0;
+          }
+          return prev + 1;
+        });
+      }, 1000);
+    }
   };
 
   const nextTrack = () => {
     setCurrentTrack((prev) => (prev + 1) % playlist.length);
+    setProgress(0);
   };
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length);
+    setProgress(0);
   };
 
   const currentSong = playlist[currentTrack];
@@ -110,15 +126,14 @@ const MusicApp: React.FC = () => {
           {/* Progress Bar */}
           <div className="w-full max-w-md mb-6">
             <div className="flex justify-between text-xs mb-2">
-              <span>1:23</span>
+              <span>{Math.floor(progress * 2.4 / 100)}:{String(Math.floor((progress * 24) % 60)).padStart(2, '0')}</span>
               <span>{currentSong.duration}</span>
             </div>
             <div className="w-full bg-white bg-opacity-20 rounded-full h-2">
               <motion.div
                 className="bg-yellow-400 h-2 rounded-full"
-                initial={{ width: "0%" }}
-                animate={{ width: isPlaying ? "60%" : "40%" }}
-                transition={{ duration: 0.5 }}
+                style={{ width: `${progress}%` }}
+                transition={{ duration: 0.3 }}
               />
             </div>
           </div>

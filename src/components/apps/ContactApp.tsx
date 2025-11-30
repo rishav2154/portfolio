@@ -17,11 +17,21 @@ const ContactApp: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Simulate form submission with realistic delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
     soundManager.play('coin');
-    alert('🍄 Message sent! Mario has received your letter!');
+    
+    // Create a custom notification instead of alert
+    const notification = document.createElement('div');
+    notification.className = 'notification bg-green-500 text-white';
+    notification.innerHTML = '🍄 Message sent! Mario has received your letter!';
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 3000);
+    
     setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
@@ -29,7 +39,16 @@ const ContactApp: React.FC = () => {
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     soundManager.play('coin');
-    alert(`${label} copied to clipboard! 🪙`);
+    
+    // Create a custom notification
+    const notification = document.createElement('div');
+    notification.className = 'notification bg-blue-500 text-white';
+    notification.innerHTML = `${label} copied to clipboard! 🪙`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 2000);
   };
 
   return (

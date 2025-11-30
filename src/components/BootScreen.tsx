@@ -36,7 +36,7 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBootComplete }) => {
         
         return newProgress;
       });
-    }, 50);
+    }, 15);
 
     return () => clearInterval(interval);
   }, [onBootComplete]);

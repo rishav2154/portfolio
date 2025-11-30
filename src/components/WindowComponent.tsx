@@ -74,7 +74,7 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
       initial={{ 
         x: window.x, 
         y: window.y,
-        scale: 0.8,
+        scale: 0.7,
         opacity: 0
       }}
       animate={{ 
@@ -83,7 +83,16 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
         scale: 1,
         opacity: 1
       }}
-      exit={{ scale: 0.8, opacity: 0 }}
+      exit={{ 
+        scale: 0.7, 
+        opacity: 0,
+        rotateX: -15,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 25,
+      }}
       drag={!window.maximized}
       dragControls={dragControls}
       dragListener={false}
@@ -101,52 +110,78 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
         });
       }}
       onClick={() => focusWindow(window.id)}
+      whileHover={{
+        boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+      }}
     >
       {/* Window Header */}
-      <div 
-        className="mario-window-header cursor-move"
+      <motion.div 
+        className="mario-window-header cursor-move relative overflow-hidden"
         onPointerDown={(e) => !window.maximized && dragControls.start(e)}
+        whileHover={{
+          background: "linear-gradient(90deg, #3B82F6 0%, #1E40AF 50%, #3B82F6 100%)",
+        }}
       >
+        {/* Header shine effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
+          whileHover={{
+            opacity: [0, 0.1, 0],
+            x: [-100, 300],
+          }}
+          transition={{ duration: 0.8 }}
+        />
+        
         <span className="font-bold">{window.title}</span>
         <div className="flex items-center gap-1">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => minimizeWindow(window.id)}
             className="w-6 h-6 bg-yellow-400 hover:bg-yellow-300 border border-black rounded flex items-center justify-center"
           >
             <Minimize2 className="w-3 h-3 text-black" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => maximizeWindow(window.id)}
             className="w-6 h-6 bg-green-400 hover:bg-green-300 border border-black rounded flex items-center justify-center"
           >
             {window.maximized ? <Square className="w-3 h-3 text-black" /> : <Maximize2 className="w-3 h-3 text-black" />}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => closeWindow(window.id)}
             className="w-6 h-6 bg-red-400 hover:bg-red-300 border border-black rounded flex items-center justify-center"
           >
             <X className="w-3 h-3 text-black" />
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Window Content */}
-      <div 
-        className="flex-1 overflow-auto"
+      <motion.div 
+        className="flex-1 overflow-auto bg-white"
         style={{ 
           height: window.maximized 
             ? 'calc(100vh - 88px)' 
             : `${window.height - 40}px` 
         }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
       >
         <AppComponent />
-      </div>
+      </motion.div>
 
       {/* Resize Handle */}
       {window.resizable && !window.maximized && (
-        <div
+        <motion.div
           className="absolute bottom-0 right-0 w-4 h-4 cursor-nw-resize"
           style={{ background: 'linear-gradient(135deg, transparent 0%, #666 100%)' }}
+          whileHover={{ scale: 1.2 }}
           onPointerDown={(e) => {
             e.preventDefault();
             const startX = e.clientX;

@@ -67,17 +67,47 @@ const DesktopIcons: React.FC = () => {
           key={icon.id}
           className="absolute pointer-events-auto cursor-pointer"
           style={{ left: icon.x, top: icon.y }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ 
+            scale: 1.15,
+            rotateY: 10,
+            z: 50,
+          }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            delay: Math.random() * 0.5,
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+          }}
           onClick={() => handleIconClick(icon)}
         >
-          <div className="flex flex-col items-center p-2 rounded hover:bg-white hover:bg-opacity-20 transition-colors">
-            <div className="mario-block w-12 h-12 flex items-center justify-center mb-2">
+          <div className="flex flex-col items-center p-3 rounded-xl hover:bg-white hover:bg-opacity-20 transition-all duration-300 backdrop-blur-sm">
+            <motion.div 
+              className="mario-block w-14 h-14 flex items-center justify-center mb-2 relative overflow-hidden"
+              whileHover={{
+                boxShadow: "0 0 20px rgba(255, 255, 255, 0.5)",
+              }}
+            >
               <icon.icon className="w-6 h-6 text-black" />
-            </div>
-            <span className="text-xs text-white text-center font-bold shadow-text max-w-16 break-words">
+              
+              {/* Shine effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
+                whileHover={{
+                  opacity: [0, 0.3, 0],
+                  x: [-100, 100],
+                }}
+                transition={{ duration: 0.6 }}
+              />
+            </motion.div>
+            <motion.span 
+              className="text-xs text-white text-center font-bold shadow-text max-w-16 break-words"
+              whileHover={{ scale: 1.1 }}
+            >
               {icon.title}
-            </span>
+            </motion.span>
           </div>
         </motion.div>
       ))}

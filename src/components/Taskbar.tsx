@@ -40,16 +40,33 @@ const Taskbar: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-blue-600 to-blue-800 border-t-2 border-black flex items-center justify-between px-4 z-50">
+    <motion.div 
+      className="fixed bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 border-t-2 border-black flex items-center justify-between px-4 z-50 backdrop-blur-md"
+      initial={{ y: 50 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
       {/* Start Menu Button */}
       <motion.button
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+        }}
         whileTap={{ scale: 0.95 }}
-        className="mario-block h-8 px-3 flex items-center gap-2"
+        className="mario-block h-8 px-3 flex items-center gap-2 relative overflow-hidden"
         onClick={() => soundManager.play('coin')}
       >
         <Menu className="w-4 h-4" />
         <span className="text-xs font-bold">Start</span>
+        
+        {/* Pulse effect */}
+        <motion.div
+          className="absolute inset-0 bg-white opacity-0"
+          whileHover={{
+            opacity: [0, 0.1, 0],
+          }}
+          transition={{ duration: 0.5, repeat: Infinity }}
+        />
       </motion.button>
 
       {/* Open Windows */}
@@ -57,8 +74,14 @@ const Taskbar: React.FC = () => {
         {windows.filter(w => !w.minimized).map(window => (
           <motion.button
             key={window.id}
-            whileHover={{ scale: 1.05 }}
-            className="h-8 px-3 bg-white bg-opacity-20 rounded text-white text-xs font-bold truncate min-w-24 max-w-32"
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+            }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="h-8 px-3 bg-white bg-opacity-20 rounded text-white text-xs font-bold truncate min-w-24 max-w-32 transition-all duration-200"
             onClick={() => focusWindow(window.id)}
           >
             {window.title}
@@ -68,8 +91,13 @@ const Taskbar: React.FC = () => {
         {windows.filter(w => w.minimized).map(window => (
           <motion.button
             key={window.id}
-            whileHover={{ scale: 1.05 }}
-            className="h-8 px-3 bg-gray-600 rounded text-gray-300 text-xs font-bold truncate min-w-24 max-w-32"
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(156, 163, 175, 0.8)",
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="h-8 px-3 bg-gray-600 rounded text-gray-300 text-xs font-bold truncate min-w-24 max-w-32 transition-all duration-200"
             onClick={() => minimizeWindow(window.id)}
           >
             <Minimize2 className="w-3 h-3 inline mr-1" />
@@ -81,52 +109,93 @@ const Taskbar: React.FC = () => {
       {/* System Tray */}
       <div className="flex items-center gap-3">
         {/* Coin Counter */}
-        <div className="flex items-center gap-1 text-yellow-400">
-          <Coins className="w-4 h-4 coin-spin" />
-          <span className="text-xs font-bold">{coins}</span>
-        </div>
+        <motion.div 
+          className="flex items-center gap-1 text-yellow-400"
+          whileHover={{ scale: 1.1 }}
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          >
+            <Coins className="w-4 h-4" />
+          </motion.div>
+          <motion.span 
+            className="text-xs font-bold"
+            key={coins}
+            initial={{ scale: 1.5, color: "#fbbf24" }}
+            animate={{ scale: 1, color: "#facc15" }}
+            transition={{ duration: 0.3 }}
+          >
+            {coins}
+          </motion.span>
+        </motion.div>
 
         {/* Power Up Indicator */}
         {powerUp && (
-          <div className="text-xs font-bold powerup-glow">
+          <motion.div 
+            className="text-xs font-bold"
+            animate={{
+              scale: [1, 1.2, 1],
+              textShadow: [
+                "0 0 5px currentColor",
+                "0 0 20px currentColor, 0 0 30px currentColor",
+                "0 0 5px currentColor"
+              ],
+            }}
+            transition={{ duration: 1, repeat: Infinity }}
+          >
             {powerUp === 'super' && '🍄'}
             {powerUp === 'fire' && '🔥'}
             {powerUp === 'star' && '⭐'}
-          </div>
+          </motion.div>
         )}
 
         {/* Workspace Switcher */}
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ 
+            scale: 1.05,
+            rotateY: 10,
+          }}
           whileTap={{ scale: 0.95 }}
           onClick={handleWorkspaceChange}
-          className="text-white text-xs font-bold flex items-center gap-1"
+          className="text-white text-xs font-bold flex items-center gap-1 p-2 rounded hover:bg-white hover:bg-opacity-10 transition-all duration-200"
           title="Switch Workspace (Warp)"
         >
-          <Monitor className="w-4 h-4" />
+          <motion.div
+            animate={{ rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <Monitor className="w-4 h-4" />
+          </motion.div>
           {workspaceNames[currentWorkspace]}
         </motion.button>
 
         {/* Sound Toggle */}
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ 
+            scale: 1.1,
+            rotate: 10,
+          }}
           whileTap={{ scale: 0.95 }}
           onClick={() => {
             toggleSound();
             soundManager.setEnabled(!soundEnabled);
           }}
-          className="text-white"
+          className="text-white p-2 rounded hover:bg-white hover:bg-opacity-10 transition-all duration-200"
           title="Toggle Sound"
         >
           {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
         </motion.button>
 
         {/* System Time */}
-        <div className="text-white text-xs font-bold">
+        <motion.div 
+          className="text-white text-xs font-bold p-2 rounded bg-white bg-opacity-10"
+          whileHover={{ scale: 1.05 }}
+        >
           {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

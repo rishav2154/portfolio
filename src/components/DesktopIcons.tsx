@@ -83,7 +83,7 @@ const DesktopIcons: React.FC = () => {
           }}
           onClick={() => handleIconClick(icon)}
         >
-          <div className="flex flex-col items-center p-3 rounded-xl hover:bg-white hover:bg-opacity-20 transition-all duration-300 backdrop-blur-sm">
+          <div className="flex flex-col items-center p-3 rounded-xl hover:bg-white hover:bg-opacity-30 transition-all duration-300">
             <motion.div 
               className="mario-block w-14 h-14 flex items-center justify-center mb-2 relative overflow-hidden"
               whileHover={{

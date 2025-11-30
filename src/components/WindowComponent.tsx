@@ -65,7 +65,7 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
   return (
     <motion.div
       key={window.id}
-      className="mario-window absolute pointer-events-auto"
+      className="mario-window absolute pointer-events-auto shadow-2xl"
       style={{
         zIndex: window.zIndex,
         width: window.maximized ? '100vw' : window.width,
@@ -111,7 +111,7 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
       }}
       onClick={() => focusWindow(window.id)}
       whileHover={{
-        boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+        boxShadow: "0 25px 50px rgba(0,0,0,0.25), 0 0 30px rgba(59, 130, 246, 0.1)",
       }}
     >
       {/* Window Header */}

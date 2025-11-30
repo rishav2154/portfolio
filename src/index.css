@@ -75,6 +75,35 @@ body {
   transform: translateY(-2px);
 }
 
+/* Enhanced Start Button */
+.start-button {
+  background: linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #DC2626 100%);
+  border: 3px solid #FBBF24;
+  box-shadow: 
+    0 0 20px rgba(220, 38, 38, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.start-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: startButtonShine 3s infinite;
+}
+
+@keyframes startButtonShine {
+  0% { transform: rotate(0deg) translate(-100%, -100%); }
+  50% { transform: rotate(0deg) translate(100%, 100%); }
+  100% { transform: rotate(0deg) translate(-100%, -100%); }
+}
+
 @keyframes blockBounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }

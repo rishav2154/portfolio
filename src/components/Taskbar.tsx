@@ -50,22 +50,46 @@ const Taskbar: React.FC = () => {
       <motion.button
         whileHover={{ 
           scale: 1.05,
-          boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+          boxShadow: "0 0 25px rgba(255, 215, 0, 0.6), 0 0 50px rgba(255, 215, 0, 0.3)",
+          rotateY: 5,
         }}
         whileTap={{ scale: 0.95 }}
-        className="mario-block h-8 px-3 flex items-center gap-2 relative overflow-hidden"
+        className="mario-block h-10 px-4 flex items-center gap-3 relative overflow-hidden bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white border-2 border-yellow-400"
         onClick={() => soundManager.play('coin')}
       >
-        <Menu className="w-4 h-4" />
-        <span className="text-xs font-bold">Start</span>
-        
-        {/* Pulse effect */}
         <motion.div
-          className="absolute inset-0 bg-white opacity-0"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        >
+          <Menu className="w-5 h-5" />
+        </motion.div>
+        <span className="text-sm font-bold">Start</span>
+        
+        {/* Enhanced pulse effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-0"
           whileHover={{
-            opacity: [0, 0.1, 0],
+            opacity: [0, 0.2, 0],
           }}
-          transition={{ duration: 0.5, repeat: Infinity }}
+          transition={{ duration: 0.8, repeat: Infinity }}
+        />
+        
+        {/* Sparkle effects */}
+        <motion.div
+          className="absolute top-1 right-1 w-1 h-1 bg-yellow-300 rounded-full"
+          animate={{
+            scale: [0, 1, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+        />
+        <motion.div
+          className="absolute bottom-1 left-1 w-1 h-1 bg-yellow-300 rounded-full"
+          animate={{
+            scale: [0, 1, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
         />
       </motion.button>
 

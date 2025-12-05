@@ -1,18 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  RotateCcw, 
-  Home, 
-  Search, 
-  Star, 
-  Shield, 
-  Globe,
-  Bookmark,
-  Download,
-  Settings
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, RotateCcw, Hop as Home, Search, Star, Shield, Globe, Bookmark, Download, Settings } from 'lucide-react';
 import { soundManager } from '../../utils/soundManager';
 
 const BrowserApp: React.FC = () => {

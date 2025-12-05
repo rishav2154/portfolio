@@ -18,6 +18,7 @@ import CalculatorApp from './apps/CalculatorApp';
 import CalendarApp from './apps/CalendarApp';
 import WeatherApp from './apps/WeatherApp';
 import AchievementsApp from './apps/AchievementsApp';
+import BrowserApp from './apps/BrowserApp';
 
 interface WindowComponentProps {
   window: any;
@@ -54,7 +55,8 @@ const WindowComponent: React.FC<WindowComponentProps> = ({
       calculator: CalculatorApp,
       calendar: CalendarApp,
       weather: WeatherApp,
-      achievements: AchievementsApp
+      achievements: AchievementsApp,
+      browser: BrowserApp
     };
 
     return components[componentName] || AboutApp;

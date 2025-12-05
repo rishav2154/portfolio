@@ -32,56 +32,74 @@ const TerminalApp: React.FC = () => {
 
   const commands = {
     help: () => [
-      'Available Commands:',
-      '==================',
-      'System Commands:',
-      '  ls - List directory contents',
-      '  cd - Change directory (simulated)',
-      '  pwd - Print working directory', 
-      '  cat <file> - Display file contents',
-      '  echo <text> - Display text',
-      '  date - Show current date/time',
-      '  time - Show current time',
-      '  clear - Clear terminal',
-      '  reset - Reset terminal',
-      '  whoami - Show current user info',
+      '🍄 MARIO PORTFOLIO TERMINAL HELP 🍄',
+      '=====================================',
       '',
-      'Game Commands:',
-      '  coin - Collect a coin (+1 🪙)',
-      '  powerup <type> - Use power-up (mushroom/fire/star)',
-      '  warp <app> - Warp to application',
-      '  flag - Victory celebration',
-      '  mario - Greet Mario',
-      '  status - Show portfolio status',
-      '  joke - Get a programming joke',
-      '  save - Save current state',
-      '  restore - Restore saved state',
+      '📁 FILE SYSTEM:',
+      '  ls          - List files and folders',
+      '  cat <file>  - Read file contents',
+      '  pwd         - Show current location',
+      '  tree        - Show folder structure',
       '',
-      'Portfolio Commands:',
-      '  about - Open About window',
-      '  skills - Display skills list',
-      '  projects - Open Projects app',
-      '  resume - Download resume PDF',
-      '  contact - Open contact form',
-      '  education - Show education info',
-      '  experience - Display work experience',
-      '  weather - Check weather',
+      '🎮 MARIO COMMANDS:',
+      '  coin        - Collect coins (+1 🪙)',
+      '  powerup     - Get random power-up',
+      '  mario       - Talk to Mario',
+      '  status      - Show game status',
+      '  warp <app>  - Teleport to app',
+      '  flag        - Victory celebration',
       '',
-      'System:',
-      '  helpme - Talk to Toad AI Assistant',
-      '  guide - Interactive tutorial',
+      '💼 PORTFOLIO:',
+      '  about       - Personal information',
+      '  skills      - Technical skills',
+      '  projects    - View projects',
+      '  resume      - Download resume',
+      '  contact     - Contact details',
+      '  education   - Academic background',
+      '  experience  - Work history',
+      '',
+      '🛠️ UTILITIES:',
+      '  weather     - Check weather',
+      '  time        - Current time',
+      '  date        - Current date',
+      '  joke        - Random joke',
+      '  quote       - Inspirational quote',
+      '  calc <expr> - Calculator',
+      '',
+      '⚙️ SYSTEM:',
+      '  clear       - Clear screen',
+      '  reset       - Reset terminal',
+      '  history     - Command history',
+      '  whoami      - User info',
+      '  neofetch    - System info',
+      '  matrix      - Matrix effect',
       ''
     ],
 
     ls: () => [
-      'total 42',
-      'drwxr-xr-x 2 mario mario 4096 Nov 21 2005 About/',
-      '-rw-r--r-- 1 mario mario 2048 Nov 21 2005 Resume.pdf',
-      '-rw-r--r-- 1 mario mario 1024 Nov 21 2005 Skills.json',
-      '-rw-r--r-- 1 mario mario  512 Nov 21 2005 Contact.txt',
-      'drwxr-xr-x 2 mario mario 4096 Nov 21 2005 Projects/',
-      'drwxr-xr-x 2 mario mario 4096 Nov 21 2005 Certificates/',
-      '-rwxr-xr-x 1 mario mario  256 Nov 21 2005 run_adventure.sh',
+      '📁 MARIO PORTFOLIO DIRECTORY',
+      '============================',
+      '',
+      '📂 Personal/',
+      '  📄 About.md         - Personal information',
+      '  📄 Resume.pdf       - Professional resume',
+      '  📄 Contact.json     - Contact details',
+      '',
+      '📂 Skills/',
+      '  📄 Programming.js   - Coding languages',
+      '  📄 Database.sql     - Database skills',
+      '  📄 WebDev.html      - Web technologies',
+      '',
+      '📂 Projects/',
+      '  📁 CTF-Platform/    - Competition system',
+      '  📁 Data-Analysis/   - Python projects',
+      '  📁 Backend-APIs/    - Server applications',
+      '',
+      '📂 Achievements/',
+      '  📄 Certificates.pdf - All certifications',
+      '  📄 Awards.txt       - Recognition received',
+      '',
+      '🎮 run_mario.sh       - Start portfolio adventure',
       ''
     ],
 
@@ -111,7 +129,11 @@ const TerminalApp: React.FC = () => {
     },
 
     powerup: (type: string) => {
-      if (!type) return ['Usage: powerup <mushroom|fire|star>', ''];
+      if (!type) {
+        // Random power-up if no type specified
+        const powerUps = ['mushroom', 'fire', 'star'];
+        type = powerUps[Math.floor(Math.random() * powerUps.length)];
+      }
       
       const powerUps: { [key: string]: 'super' | 'fire' | 'star' } = {
         mushroom: 'super',
@@ -120,7 +142,7 @@ const TerminalApp: React.FC = () => {
       };
 
       const powerUp = powerUps[type.toLowerCase()];
-      if (!powerUp) return ['Invalid power-up! Use: mushroom, fire, or star', ''];
+      if (!powerUp) return ['🚫 Invalid power-up! Available: mushroom, fire, star', ''];
 
       setPowerUp(powerUp);
       soundManager.play('powerup');
@@ -136,44 +158,67 @@ const TerminalApp: React.FC = () => {
     },
 
     mario: () => [
-      '🍄 It\'s-a me, Mario!',
-      'Welcome to my portfolio adventure!',
-      'Use commands to explore and collect coins!',
+      '🍄 Wahoo! It\'s-a me, Mario!',
+      '================================',
+      '',
+      '👋 Welcome to Rishav\'s Portfolio Kingdom!',
+      '',
+      '🎮 Here you can:',
+      '  • Explore different worlds (apps)',
+      '  • Collect coins by using commands',
+      '  • Unlock power-ups and achievements',
+      '  • Learn about Rishav\'s skills and projects',
+      '',
+      '💡 Pro tip: Type "help" to see all commands!',
+      '🪙 Current coins: ' + useGameStore.getState().coins,
       ''
     ],
 
     status: () => {
       const state = useGameStore.getState();
       return [
-        'Portfolio Status:',
-        '==================',
-        `Coins: ${state.coins} 🪙`,
-        `Power-up: ${state.powerUp || 'None'} ${state.powerUp ? '⭐' : ''}`,
-        `Workspace: ${state.currentWorkspace} 🌍`,
-        `Apps visited: ${state.visitedApps.length} 📱`,
-        `Achievements: ${state.achievements.length} 🏆`,
+        '🎮 MARIO PORTFOLIO STATUS',
+        '========================',
+        '',
+        `🪙 Coins Collected: ${state.coins}`,
+        `⭐ Power-up: ${state.powerUp ? state.powerUp.toUpperCase() : 'None'}`,
+        `🌍 Current World: ${state.currentWorkspace.toUpperCase()}`,
+        `📱 Apps Explored: ${state.visitedApps.length}/15`,
+        `🏆 Achievements: ${state.achievements.length}/6`,
+        `🎯 Progress: ${Math.round((state.achievements.length / 6) * 100)}%`,
+        '',
+        state.achievements.length === 6 ? '🎉 CONGRATULATIONS! All achievements unlocked!' : '💪 Keep exploring to unlock more achievements!',
         ''
       ];
     },
 
     weather: () => [
-      '🌤️ Weather in Mushroom Kingdom:',
-      'Temperature: 24°C ☀️',
-      'Condition: Sunny and perfect for adventures!',
-      'Wind: Light breeze from the east',
-      'Perfect day to explore the portfolio!',
+      '🌤️ MUSHROOM KINGDOM WEATHER',
+      '============================',
+      '',
+      '📍 Location: New Delhi, India',
+      '🌡️ Temperature: 24°C',
+      '☀️ Condition: Sunny and bright',
+      '💨 Wind: 12 km/h from east',
+      '💧 Humidity: 45%',
+      '👁️ Visibility: 10 km',
+      '',
+      '🍄 Mario says: "Perfect weather for coding adventures!"',
       ''
     ],
 
     joke: () => {
       const jokes = [
-        'Why did Mario become a developer? Because he loves jumping through code blocks! 🍄',
-        'What\'s Mario\'s favorite programming language? Java-Script! ☕',
-        'Why doesn\'t Mario use Windows? He prefers open source pipes! 🔧',
-        'How does Mario debug his code? He uses console.log(\'Mamma mia!\'); 🐛'
+        '😄 Why did Mario become a developer?\n   Because he loves jumping through code blocks! 🍄',
+        '☕ What\'s Mario\'s favorite programming language?\n   Java-Script! (Get it? Java... Script... 😉)',
+        '🔧 Why doesn\'t Mario use Windows?\n   He prefers open source pipes! 🚰',
+        '🐛 How does Mario debug his code?\n   He uses console.log("Mamma mia!"); 🍝',
+        '🎮 Why did the developer go broke?\n   Because he used up all his cache! 💰',
+        '🔄 Why do programmers prefer dark mode?\n   Because light attracts bugs! 🐛',
+        '☁️ Why do Java developers wear glasses?\n   Because they can\'t C#! 👓'
       ];
       const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
-      return [randomJoke, ''];
+      return ['🎭 MARIO\'S CODING JOKES', '===================', '', randomJoke, ''];
     },
 
     time: () => [
@@ -367,12 +412,116 @@ const TerminalApp: React.FC = () => {
 
     save: () => {
       // Save state to localStorage (already handled by zustand persist)
-      return ['Portfolio state saved!', ''];
+      return ['💾 Game state saved successfully!', '🍄 Your progress is safe in the Mushroom Kingdom!', ''];
     },
 
     restore: () => {
       // Restore from localStorage (already handled by zustand persist)  
-      return ['Portfolio state restored!', ''];
+      return ['📁 Game state restored successfully!', '🎮 Welcome back to the adventure!', ''];
+    },
+
+    tree: () => [
+      '🌳 PORTFOLIO DIRECTORY TREE',
+      '===========================',
+      '',
+      '📁 mario-portfolio/',
+      '├── 📂 Personal/',
+      '│   ├── 📄 About.md',
+      '│   ├── 📄 Resume.pdf',
+      '│   └── 📄 Contact.json',
+      '├── 📂 Skills/',
+      '│   ├── 📄 Programming.js',
+      '│   ├── 📄 Database.sql',
+      '│   └── 📄 WebDev.html',
+      '├── 📂 Projects/',
+      '│   ├── 📁 CTF-Platform/',
+      '│   ├── 📁 Data-Analysis/',
+      '│   └── 📁 Backend-APIs/',
+      '└── 📂 Achievements/',
+      '    ├── 📄 Certificates.pdf',
+      '    └── 📄 Awards.txt',
+      ''
+    ],
+
+    history: () => {
+      const state = useGameStore.getState();
+      return [
+        '📜 COMMAND HISTORY',
+        '==================',
+        '',
+        ...state.terminalHistory.slice(-10).map((cmd, i) => `${i + 1}. ${cmd}`),
+        '',
+        'Use ↑/↓ arrows to navigate history'
+      ];
+    },
+
+    neofetch: () => [
+      '🖥️ MARIO PORTFOLIO SYSTEM INFO',
+      '==============================',
+      '',
+      '👤 User: Rishav Jaiswal',
+      '💻 System: Mario Portfolio OS v1.0',
+      '🏠 Location: New Delhi, India',
+      '🎓 Education: BCA (Rank 1)',
+      '💼 Role: Project Head at Cyber Knight',
+      '🔧 Skills: Node.js, Python, MySQL, Express',
+      '🎮 Power-up: ' + (useGameStore.getState().powerUp || 'None'),
+      '🪙 Coins: ' + useGameStore.getState().coins,
+      '🏆 Achievements: ' + useGameStore.getState().achievements.length + '/6',
+      ''
+    ],
+
+    quote: () => {
+      const quotes = [
+        '"The only way to do great work is to love what you do." - Steve Jobs',
+        '"Code is like humor. When you have to explain it, it\'s bad." - Cory House',
+        '"First, solve the problem. Then, write the code." - John Johnson',
+        '"Experience is the name everyone gives to their mistakes." - Oscar Wilde',
+        '"The best error message is the one that never shows up." - Thomas Fuchs',
+        '"Simplicity is the ultimate sophistication." - Leonardo da Vinci'
+      ];
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      return ['💭 INSPIRATIONAL QUOTE', '====================', '', randomQuote, ''];
+    },
+
+    calc: (expression: string) => {
+      if (!expression) return ['Usage: calc <expression>', 'Example: calc 2 + 2', ''];
+      
+      try {
+        // Simple calculator - only allow basic operations for security
+        const sanitized = expression.replace(/[^0-9+\-*/.() ]/g, '');
+        const result = Function('"use strict"; return (' + sanitized + ')')();
+        return [
+          '🧮 MARIO CALCULATOR',
+          '==================',
+          '',
+          `Expression: ${expression}`,
+          `Result: ${result}`,
+          ''
+        ];
+      } catch (error) {
+        return ['❌ Invalid expression!', 'Use numbers and +, -, *, /, (, )', ''];
+      }
+    },
+
+    matrix: () => {
+      const chars = '01';
+      const lines = [];
+      for (let i = 0; i < 10; i++) {
+        let line = '';
+        for (let j = 0; j < 50; j++) {
+          line += chars[Math.floor(Math.random() * chars.length)];
+        }
+        lines.push(line);
+      }
+      return [
+        '🔢 ENTERING THE MATRIX...',
+        '========================',
+        '',
+        ...lines,
+        '',
+        '🍄 Welcome to the real world, Mario!'
+      ];
     }
   };
 

@@ -127,6 +127,128 @@ const AboutApp: React.FC = () => {
           </p>
         </motion.div>
 
+        {/* Detailed Background */}
+        <motion.div 
+          className="mt-6 mario-window p-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <h2 className="text-lg font-bold text-mario-blue mb-3 flex items-center gap-2">
+            📚 Background & Interests
+          </h2>
+          <div className="space-y-3 text-sm text-gray-700">
+            <p>
+              <strong>🎓 Academic Excellence:</strong> Currently maintaining Rank 1 in BCA program with a CGPA of 3.6, 
+              demonstrating consistent academic performance and dedication to learning.
+            </p>
+            <p>
+              <strong>💻 Technical Passion:</strong> Deeply passionate about backend development and data analysis. 
+              I enjoy building scalable systems and extracting meaningful insights from complex datasets using Python and SQL.
+            </p>
+            <p>
+              <strong>🏆 Leadership Experience:</strong> As Project Head at Cyber Knight, I lead technical teams in organizing 
+              cybersecurity events and competitions, managing end-to-end project delivery and infrastructure development.
+            </p>
+            <p>
+              <strong>🚀 Innovation Focus:</strong> Always exploring new technologies and methodologies to solve real-world problems. 
+              Currently working on advanced CTF platforms and data visualization projects.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Skills Highlight */}
+        <motion.div 
+          className="mt-6 mario-window p-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <h2 className="text-lg font-bold text-mario-blue mb-3 flex items-center gap-2">
+            ⚡ Core Competencies
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h3 className="font-bold text-mario-red mb-2">🔧 Technical Skills</h3>
+              <ul className="text-sm text-gray-700 space-y-1">
+                <li>• Backend Development (Node.js, Express)</li>
+                <li>• Database Management (MySQL, SQL)</li>
+                <li>• Data Analysis (Python, Pandas, NumPy)</li>
+                <li>• Web Technologies (HTML, CSS, React)</li>
+                <li>• Programming (Python, C, Java)</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-mario-green mb-2">🤝 Soft Skills</h3>
+              <ul className="text-sm text-gray-700 space-y-1">
+                <li>• Project Management & Leadership</li>
+                <li>• Problem-solving & Critical Thinking</li>
+                <li>• Team Collaboration & Communication</li>
+                <li>• Event Planning & Execution</li>
+                <li>• Adaptability & Quick Learning</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Personal Interests */}
+        <motion.div 
+          className="mt-6 mario-window p-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <h2 className="text-lg font-bold text-mario-blue mb-3 flex items-center gap-2">
+            🎨 Personal Interests & Hobbies
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="mario-block p-3 text-center">
+              <div className="text-2xl mb-2">🔐</div>
+              <p className="text-xs font-bold">Cybersecurity</p>
+              <p className="text-xs text-gray-600">CTF competitions & security research</p>
+            </div>
+            <div className="mario-block p-3 text-center">
+              <div className="text-2xl mb-2">📊</div>
+              <p className="text-xs font-bold">Data Science</p>
+              <p className="text-xs text-gray-600">Analytics & visualization projects</p>
+            </div>
+            <div className="mario-block p-3 text-center">
+              <div className="text-2xl mb-2">🎮</div>
+              <p className="text-xs font-bold">Gaming</p>
+              <p className="text-xs text-gray-600">Strategy games & puzzle solving</p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Goals & Aspirations */}
+        <motion.div 
+          className="mt-6 mario-window p-4 bg-gradient-to-r from-purple-100 to-blue-100"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <h2 className="text-lg font-bold text-mario-blue mb-3 flex items-center gap-2">
+            🌟 Future Goals & Aspirations
+          </h2>
+          <div className="space-y-3 text-sm text-gray-700">
+            <p>
+              <strong>🎯 Short-term Goals:</strong> Complete BCA with distinction, gain hands-on experience in 
+              enterprise-level backend systems, and contribute to open-source projects in the data analysis domain.
+            </p>
+            <p>
+              <strong>🚀 Long-term Vision:</strong> Become a senior backend architect specializing in scalable systems 
+              and data infrastructure. Aspire to lead technical teams in building innovative solutions that impact millions of users.
+            </p>
+            <p>
+              <strong>📈 Continuous Learning:</strong> Currently pursuing advanced certifications in cloud technologies (AWS) 
+              and exploring machine learning applications in backend systems.
+            </p>
+          </div>
+        </motion.div>
         {/* Fun Facts */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <motion.div 
@@ -161,6 +283,39 @@ const AboutApp: React.FC = () => {
             <p className="text-xs text-gray-600">Cyber Knight</p>
           </motion.div>
         </div>
+
+        {/* Contact CTA */}
+        <motion.div 
+          className="mt-6 text-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.0 }}
+        >
+          <div className="mario-window p-4 bg-gradient-to-r from-green-100 to-yellow-100">
+            <h3 className="text-lg font-bold text-mario-blue mb-2">🤝 Let's Connect!</h3>
+            <p className="text-sm text-gray-700 mb-3">
+              Interested in collaborating or discussing opportunities? I'd love to hear from you!
+            </p>
+            <div className="flex justify-center gap-3">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open(`mailto:${personalInfo.email}`, '_blank')}
+                className="mario-block px-4 py-2 text-xs font-bold bg-mario-blue text-white"
+              >
+                📧 Email Me
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open(`tel:${personalInfo.phone}`, '_blank')}
+                className="mario-block px-4 py-2 text-xs font-bold bg-mario-green text-white"
+              >
+                📞 Call Me
+              </motion.button>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );

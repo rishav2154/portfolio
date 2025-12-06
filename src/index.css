@@ -327,6 +327,28 @@ body {
   }
 }
 
+/* Start Menu 3D Effects */
+.start-menu-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.start-menu-item {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.start-menu-item:hover {
+  transform: translateZ(20px) rotateY(5deg);
+}
+
+/* Three.js Canvas Styling */
+canvas {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
 /* Enhanced Glow Effects */
 .glow-effect {
   position: relative;

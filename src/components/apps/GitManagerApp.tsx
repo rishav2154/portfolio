@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { GitBranch, GitCommit, GitMerge, GitPullRequest, Plus, Download, Upload, RefreshCw, Terminal, FileText } from 'lucide-react';
+import { GitBranch, GitCommitVertical as GitCommit, GitMerge, GitPullRequest, Plus, Download, Upload, RefreshCw, Terminal, FileText } from 'lucide-react';
 import { soundManager } from '../../utils/soundManager';
 
 const GitManagerApp: React.FC = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Plus, Trash2, Copy, Download, Upload, Globe, Lock, Unlock } from 'lucide-react';
+import { Send, Plus, Trash2, Copy, Download, Upload, Globe, Lock, Clock as Unlock } from 'lucide-react';
 import { soundManager } from '../../utils/soundManager';
 
 const ApiTesterApp: React.FC = () => {

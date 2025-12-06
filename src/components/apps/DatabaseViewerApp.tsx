@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Database, Table, Search, Plus, Edit, Trash2, Download, Upload, RefreshCw } from 'lucide-react';
+import { Database, Table, Search, Plus, CreditCard as Edit, Trash2, Download, Upload, RefreshCw } from 'lucide-react';
 import { soundManager } from '../../utils/soundManager';
 
 const DatabaseViewerApp: React.FC = () => {

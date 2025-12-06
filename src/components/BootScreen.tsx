@@ -31,7 +31,7 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBootComplete }) => {
         
         if (newProgress >= 100) {
           clearInterval(interval);
-          setTimeout(onBootComplete, 1000);
+          setTimeout(onBootComplete, 9000);
         }
         
         return newProgress;

@@ -23,7 +23,11 @@ import {
   Settings,
   Power,
   LogOut,
-  Search
+  Search,
+  Database,
+  Activity,
+  GitBranch,
+  Package
 } from 'lucide-react';
 
 interface StartMenuProps {

@@ -5,6 +5,7 @@ import Taskbar from './Taskbar';
 import WindowManager from './WindowManager';
 import DesktopIcons from './DesktopIcons';
 import FloatingParticles from './FloatingParticles';
+import SplineWallpaper from './SplineWallpaper';
 import { workspaces } from '../data/portfolioData';
 
 const Desktop: React.FC = () => {
@@ -17,12 +18,19 @@ const Desktop: React.FC = () => {
       className="h-screen w-screen relative overflow-hidden transition-all duration-1000"
       style={{ background: workspace.background }}
     >
+      {/* Spline 3D Wallpaper */}
+      {workspace.wallpaperType === 'spline' && (
+        <div className="absolute inset-0 z-0">
+          <SplineWallpaper />
+        </div>
+      )}
+      
       {/* Floating Particles */}
-      <FloatingParticles />
+      {workspace.wallpaperType !== 'spline' && <FloatingParticles />}
       
       {/* Floating Coins */}
       {coins > 0 && (
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none z-10">
           {[...Array(Math.min(coins, 10))].map((_, i) => (
             <motion.div
               key={i}
@@ -48,7 +56,8 @@ const Desktop: React.FC = () => {
       )}
 
       {/* Desktop Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      {workspace.wallpaperType !== 'spline' && (
+        <div className="absolute inset-0 pointer-events-none z-5">
         {currentWorkspace === 'overworld' && (
           <>
             {/* Clouds */}
@@ -305,16 +314,23 @@ const Desktop: React.FC = () => {
             />
           </>
         )}
-      </div>
+        </div>
+      )}
 
       {/* Desktop Icons */}
-      <DesktopIcons />
+      <div className="relative z-20">
+        <DesktopIcons />
+      </div>
       
       {/* Window Manager */}
-      <WindowManager />
+      <div className="relative z-30">
+        <WindowManager />
+      </div>
       
       {/* Taskbar */}
-      <Taskbar />
+      <div className="relative z-40">
+        <Taskbar />
+      </div>
     </div>
   );
 };

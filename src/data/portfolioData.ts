@@ -166,24 +166,35 @@ export const workspaces = [
     id: 'overworld',
     name: 'Overworld',
     background: 'linear-gradient(180deg, #87CEEB 0%, #98FB98 100%)',
-    description: 'The main world of Mario'
+    description: 'The main world of Mario',
+    wallpaperType: 'gradient'
   },
   {
     id: 'underground',
     name: 'Underground',
     background: 'linear-gradient(180deg, #2F1B14 0%, #8B4513 100%)',
-    description: 'Dark underground caves'
+    description: 'Dark underground caves',
+    wallpaperType: 'gradient'
   },
   {
     id: 'castle',
     name: 'Castle',
     background: 'linear-gradient(180deg, #4B0082 0%, #800080 100%)',
-    description: 'Bowser\'s castle'
+    description: 'Bowser\'s castle',
+    wallpaperType: 'gradient'
   },
   {
     id: 'sky',
     name: 'Sky',
     background: 'linear-gradient(180deg, #FFB6C1 0%, #87CEEB 100%)',
-    description: 'High in the sky'
+    description: 'High in the sky',
+    wallpaperType: 'gradient'
+  },
+  {
+    id: 'spline3d',
+    name: '3D World',
+    background: '#000000',
+    description: 'Interactive 3D environment',
+    wallpaperType: 'spline'
   }
 ];

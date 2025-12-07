@@ -30,11 +30,12 @@ const Taskbar: React.FC = () => {
     overworld: '🌍 Overworld',
     underground: '🕳️ Underground', 
     castle: '🏰 Castle',
-    sky: '☁️ Sky'
+    sky: '☁️ Sky',
+    spline3d: '🌌 3D World'
   };
 
   const handleWorkspaceChange = () => {
-    const workspaces = ['overworld', 'underground', 'castle', 'sky'] as const;
+    const workspaces = ['overworld', 'underground', 'castle', 'sky', 'spline3d'] as const;
     const currentIndex = workspaces.indexOf(currentWorkspace);
     const nextIndex = (currentIndex + 1) % workspaces.length;
     setWorkspace(workspaces[nextIndex]);
@@ -49,7 +50,7 @@ const Taskbar: React.FC = () => {
   return (
     <>
       <motion.div 
-        className="fixed bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 border-t-2 border-black flex items-center justify-between px-4 z-50 backdrop-blur-md"
+        className="fixed bottom-0 left-0 right-0 h-12 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 border-t-2 border-black flex items-center justify-between px-4 z-50 backdrop-blur-md bg-opacity-90"
         initial={{ y: 50 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}

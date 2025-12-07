@@ -374,3 +374,31 @@ canvas {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Spline 3D Wallpaper Styles */
+.spline-wallpaper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.spline-wallpaper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+/* Ensure desktop elements are above Spline */
+.desktop-overlay {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.desktop-overlay > * {
+  pointer-events: auto;
+}

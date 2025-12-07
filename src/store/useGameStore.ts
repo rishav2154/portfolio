@@ -18,7 +18,7 @@ export interface Window {
 export interface GameState {
   // System State
   isBooted: boolean;
-  currentWorkspace: 'overworld' | 'underground' | 'castle' | 'sky';
+  currentWorkspace: 'overworld' | 'underground' | 'castle' | 'sky' | 'spline3d';
   theme: 'classic' | 'dark' | 'underwater' | 'lava';
   soundEnabled: boolean;
   

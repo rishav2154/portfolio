@@ -18,6 +18,12 @@ import CalculatorApp from './apps/CalculatorApp';
 import CalendarApp from './apps/CalendarApp';
 import WeatherApp from './apps/WeatherApp';
 import AchievementsApp from './apps/AchievementsApp';
+import CodeEditorApp from './apps/CodeEditorApp';
+import ApiTesterApp from './apps/ApiTesterApp';
+import DatabaseViewerApp from './apps/DatabaseViewerApp';
+import SystemMonitorApp from './apps/SystemMonitorApp';
+import GitManagerApp from './apps/GitManagerApp';
+import PackageManagerApp from './apps/PackageManagerApp';
 
 interface WindowComponentProps {
   window: any;

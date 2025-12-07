@@ -23,11 +23,7 @@ import {
   Settings,
   Power,
   LogOut,
-  Search,
-  Database,
-  Activity,
-  GitBranch,
-  Package
+  Search
 } from 'lucide-react';
 
 interface StartMenuProps {
@@ -59,15 +55,10 @@ const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose }) => {
     { id: 'calendar', title: 'Calendar', icon: Calendar, category: 'Tools' },
     { id: 'weather', title: 'Weather', icon: Cloud, category: 'Tools' },
     { id: 'achievements', title: 'Achievements', icon: Trophy, category: 'Gaming' },
-    { id: 'code-editor', title: 'Code Editor', icon: Code, category: 'Development' },
-    { id: 'api-tester', title: 'API Tester', icon: Globe, category: 'Development' },
-    { id: 'database-viewer', title: 'Database', icon: Database, category: 'Development' },
-    { id: 'system-monitor', title: 'System Monitor', icon: Activity, category: 'Development' },
-    { id: 'git-manager', title: 'Git Manager', icon: GitBranch, category: 'Development' },
-    { id: 'package-manager', title: 'Package Manager', icon: Package, category: 'Development' }
+    { id: 'browser', title: 'Browser', icon: Globe, category: 'Tools' }
   ];
 
-  const categories = ['All', 'Personal', 'Technical', 'Tools', 'Entertainment', 'Gaming', 'Development'];
+  const categories = ['All', 'Personal', 'Technical', 'Tools', 'Entertainment', 'Gaming'];
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredItems = selectedCategory === 'All' 

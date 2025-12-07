@@ -91,7 +91,7 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBootComplete }) => {
       {progress === 100 && (
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 6 }}
+          animate={{ opacity: 1 }}
           className="text-center text-green-300 mt-4"
         >
           Press any key to continue...

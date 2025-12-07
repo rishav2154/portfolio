@@ -18,11 +18,7 @@ import {
   Calendar,
   Cloud,
   Trophy,
-  Globe,
-  Database,
-  Activity,
-  GitBranch,
-  Package
+  Globe
 } from 'lucide-react';
 
 const DesktopIcons: React.FC = () => {
@@ -44,12 +40,7 @@ const DesktopIcons: React.FC = () => {
     { id: 'calendar', title: 'Calendar', icon: Calendar, x: 500, y: 100 },
     { id: 'weather', title: 'Weather', icon: Cloud, x: 500, y: 200 },
     { id: 'achievements', title: 'Achievements', icon: Trophy, x: 500, y: 300 },
-    { id: 'code-editor', title: 'Code Editor', icon: Code, x: 650, y: 100 },
-    { id: 'api-tester', title: 'API Tester', icon: Globe, x: 650, y: 200 },
-    { id: 'database-viewer', title: 'Database', icon: Database, x: 650, y: 300 },
-    { id: 'system-monitor', title: 'System Monitor', icon: Activity, x: 800, y: 100 },
-    { id: 'git-manager', title: 'Git Manager', icon: GitBranch, x: 800, y: 200 },
-    { id: 'package-manager', title: 'Package Manager', icon: Package, x: 800, y: 300 }
+    { id: 'browser', title: 'Browser', icon: Globe, x: 650, y: 100 }
   ];
 
   const handleIconClick = (icon: typeof icons[0]) => {

@@ -5,7 +5,7 @@ const SplineWallpaper: React.FC = () => {
   return (
     <div 
       className="absolute inset-0 w-full h-full"
-      style={{ backgroundColor: '#000' }}   // 🔥 Added black background
+      style={{ backgroundColor: '#0000' }}   // 🔥 Added black background
     >
       <Spline
         scene="https://prod.spline.design/3Tdg-Lw9ne7SMr5n/scene.splinecode"
